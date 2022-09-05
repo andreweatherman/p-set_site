@@ -1,0 +1,114 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Solutions",
+    "section": "",
+    "text": "This site hosts a repository of solutions for two Duke sociology classes focusing on the R programming language during the Fall 2022 semester. All problem sets can be found under the navigation bar or linked here on the homepage."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "index.html#solutions",
+    "href": "index.html#solutions",
+    "title": "Solutions",
+    "section": "Solutions",
+    "text": "Solutions\n\nWeek 1\n\nFocuses on the basics of reading in and understanding data in R. Uses nrow, ncol, and class. Practices with causact::baseballData."
+  },
+  {
+    "objectID": "solutions/W1-SOC.html",
+    "href": "solutions/W1-SOC.html",
+    "title": "Week 1: SOC 223",
+    "section": "",
+    "text": "I already have those three packages installed on my machine.\n\n# install.packages('causact')\n# install.packages('dplyr')\n# install.packages('igraph')"
+  },
+  {
+    "objectID": "solutions/W1-SOC.html#question-2",
+    "href": "solutions/W1-SOC.html#question-2",
+    "title": "Week 1: SOC 223",
+    "section": "Question 2:",
+    "text": "Question 2:\nn_distinct() returns the number of distinct rows found in the object."
+  },
+  {
+    "objectID": "solutions/W1-SOC.html#question-3",
+    "href": "solutions/W1-SOC.html#question-3",
+    "title": "Week 1: SOC 223",
+    "section": "Question 3:",
+    "text": "Question 3:\n\n# number of rows\nnrow(causact::baseballData)\n\n[1] 12145\n\n# nummber of columns\nncol(causact::baseballData)\n\n[1] 5\n\n# type of `home` and `HomeScore` column\nsapply(causact::baseballData[c('Home', 'HomeScore')], class)\n\n     Home HomeScore \n \"factor\" \"integer\""
+  },
+  {
+    "objectID": "solutions/W1-SOC.html#question-4",
+    "href": "solutions/W1-SOC.html#question-4",
+    "title": "Week 1: SOC 223",
+    "section": "Question 4:",
+    "text": "Question 4:\nOne row in the data set represents a single game observation, while the Home and Visitor columns indicate who were the home and away teams during a game."
+  },
+  {
+    "objectID": "solutions/W1-SOC.html#question-5",
+    "href": "solutions/W1-SOC.html#question-5",
+    "title": "Week 1: SOC 223",
+    "section": "Question 5:",
+    "text": "Question 5:\n\nname <-\n  c(\n    \"Wayne Gretzky\",\n    \"Gordie Howe\",\n    \"Jaromir Jagr\",\n    \"Brett Hull\",\n    \"Marcel Dionne\",\n    \"Phil Esposito\" ,\n    \"Mike Gartner\",\n    \"Alex Ovechkin\",\n    \"Mark Messier\" ,\n    \"Steve Yzerman\"\n  )\ngoals <- c(894, 801, 766, 741, 731, 717, 708, 700, 694, 692)\nyear_started <- c(1979, 1946, 1990, 1986, 1971, 1963, 1979, 2005, 1979, 1983)\n\n\ndata <- dplyr::tibble(\n  name = name,\n  goals = goals,\n  year_started = year_started\n)\ndplyr::glimpse(data)\n\nRows: 10\nColumns: 3\n$ name         <chr> \"Wayne Gretzky\", \"Gordie Howe\", \"Jaromir Jagr\", \"Brett Hu…\n$ goals        <dbl> 894, 801, 766, 741, 731, 717, 708, 700, 694, 692\n$ year_started <dbl> 1979, 1946, 1990, 1986, 1971, 1963, 1979, 2005, 1979, 1983"
+  },
+  {
+    "objectID": "soc-223-solutions/W1-SOC.html",
+    "href": "soc-223-solutions/W1-SOC.html",
+    "title": "Week 1: SOC 223",
+    "section": "",
+    "text": "Run:\n\npackages <- c('causact', 'dplyr', 'igraph')\n\ninstalled_packages <- packages %in% rownames(installed.packages())\nif (any(installed_packages == FALSE)) {\n  install.packages(packages[!installed_packages])\n}\n\ninvisible(lapply(packages, library, character.only = TRUE))"
+  },
+  {
+    "objectID": "soc-223-solutions/W1-SOC.html#question-2",
+    "href": "soc-223-solutions/W1-SOC.html#question-2",
+    "title": "Week 1: SOC 223",
+    "section": "Question 2:",
+    "text": "Question 2:\nR’s solution to overlapping object names is “masking.” That is, if two or more packages share object names – in this case, as_data_frame is an exported object from both dplyr and igraph – R will default to using the object from the last loaded package. Such that igraph was loaded after dplyr in the example, simply calling as_data_frame() will run the function pulled from igraph.\nInstead of loading an entire library, the best practice is to utilize namespaces to ‘pluck’ individual functions from a package. If you need to reference just one chapter from a book, you would not read the entire book – rather just the chapter. In the same vein, if I were to just need the map function from the purrr package, I would use purrr::map to reference that single function, not load the entire package. Not only does this increase code clarity, but it lessens the chance of accidental masking errors.\nWhen writing open-source code, it is best to leverage namespaces (package::function) to make it abundantly clear what function you are referencing where.\nMasking conflicts can be checked with the base conflicts function. Often times, however, these might be unnecessarily verbose. Instead of adding extra dependencies – which should always be kept at a minimum during package development – authors will add common utilities that might clutter the conflicts output: The magrittr pipe (%>%) is a common example; while this would return in the conflicts function, it is not functionally different cross-package. A work-around is to use the conflict_scout() function from conflicted.\nNote: This example is a bit wonky because as_data_frame() is in the tibble() namespace and not dplyr. Loading tibble here will show the intended conflict.\n\nlibrary(tibble)\nlibrary(igraph)\n\n# if ('conflicted' %in% rownames(installed.packages()) == FALSE) {\n  # install.packages('conflicted')\n# }\n\nconflicted::conflict_scout()\n\n3 conflicts:\n* `as_data_frame`: igraph, tibble\n* `decompose`    : igraph, stats\n* `spectrum`     : igraph, stats\n\n\nSimilarly, it is possible to check where individual conflicts are originating from:\n\nlibrary(dplyr)\nlibrary(igraph)\n\ngetAnywhere(\"as_data_frame\")$where\n\n[1] \"package:dplyr\"    \"package:igraph\"   \"package:tibble\"   \"namespace:igraph\"\n[5] \"namespace:tibble\""
+  },
+  {
+    "objectID": "soc-223-solutions/W1-SOC.html#question-3",
+    "href": "soc-223-solutions/W1-SOC.html#question-3",
+    "title": "Week 1: SOC 223",
+    "section": "Question 3:",
+    "text": "Question 3:\nn_distinct() returns the number of distinct rows found in the object."
+  },
+  {
+    "objectID": "soc-223-solutions/W1-SOC.html#question-4",
+    "href": "soc-223-solutions/W1-SOC.html#question-4",
+    "title": "Week 1: SOC 223",
+    "section": "Question 4:",
+    "text": "Question 4:\n\n# number of rows\nnrow(causact::baseballData)\n\n[1] 12145\n\n# nummber of columns\nncol(causact::baseballData)\n\n[1] 5\n\n# type of `Home` and `HomeScore` column\nsapply(causact::baseballData[c('Home', 'HomeScore')], class)\n\n     Home HomeScore \n \"factor\" \"integer\""
+  },
+  {
+    "objectID": "soc-223-solutions/W1-SOC.html#question-5",
+    "href": "soc-223-solutions/W1-SOC.html#question-5",
+    "title": "Week 1: SOC 223",
+    "section": "Question 5:",
+    "text": "Question 5:\nOne row in the data set represents a single game observation, while the Home and Visitor columns indicate who were the home and away teams during a game."
+  },
+  {
+    "objectID": "index.html#soc-223",
+    "href": "index.html#soc-223",
+    "title": "Solutions",
+    "section": "SOC 223:",
+    "text": "SOC 223:\n\nWeek 1\n\nFocuses on the basics of reading in and understanding data in R. Uses nrow, ncol, and class. Practices with causact::baseballData."
+  },
+  {
+    "objectID": "soc-223-solutions/W1-SOC.html#question-2-1",
+    "href": "soc-223-solutions/W1-SOC.html#question-2-1",
+    "title": "Week 1: SOC 223",
+    "section": "Question 2:",
+    "text": "Question 2:\nn_distinct() returns the number of distinct rows found in the object."
+  },
+  {
+    "objectID": "soc-223-solutions/W1-SOC.html#question-6",
+    "href": "soc-223-solutions/W1-SOC.html#question-6",
+    "title": "Week 1: SOC 223",
+    "section": "Question 6:",
+    "text": "Question 6:\n\nname <-\n  c(\n    \"Wayne Gretzky\",\n    \"Gordie Howe\",\n    \"Jaromir Jagr\",\n    \"Brett Hull\",\n    \"Marcel Dionne\",\n    \"Phil Esposito\" ,\n    \"Mike Gartner\",\n    \"Alex Ovechkin\",\n    \"Mark Messier\" ,\n    \"Steve Yzerman\"\n  )\ngoals <- c(894, 801, 766, 741, 731, 717, 708, 700, 694, 692)\nyear_started <- c(1979, 1946, 1990, 1986, 1971, 1963, 1979, 2005, 1979, 1983)\n\n\ndata <- dplyr::tibble(\n  name = name,\n  goals = goals,\n  year_started = year_started\n)\ndplyr::glimpse(data)\n\nRows: 10\nColumns: 3\n$ name         <chr> \"Wayne Gretzky\", \"Gordie Howe\", \"Jaromir Jagr\", \"Brett Hu…\n$ goals        <dbl> 894, 801, 766, 741, 731, 717, 708, 700, 694, 692\n$ year_started <dbl> 1979, 1946, 1990, 1986, 1971, 1963, 1979, 2005, 1979, 1983"
+  }
+]

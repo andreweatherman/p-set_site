@@ -1,0 +1,24 @@
+project:
+  type: website
+
+website:
+  title: "P-Set Solutions"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - text: "SOC 223"
+        menu:
+          - 'soc-223-solutions/W1-SOC.qmd'
+      - text: "SOC 367S"
+        menu:
+          - 'Hold'
+
+format:
+  html:
+    theme: custom.scss
+    css: styles.css
+    toc: true
+
+editor: visual
+

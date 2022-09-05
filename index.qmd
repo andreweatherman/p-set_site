@@ -1,0 +1,11 @@
+---
+title: "Solutions"
+---
+
+This site hosts a repository of solutions for two Duke sociology classes focusing on the R programming language during the Fall 2022 semester. All problem sets can be found under the navigation bar or linked here on the homepage.
+
+## SOC 223:
+
+### [Week 1](soc-223-solutions/W1-SOC.qmd)
+
+-   Focuses on the basics of reading in and understanding data in R. Uses `nrow`, `ncol`, and `class`. Practices with `causact::baseballData`.
