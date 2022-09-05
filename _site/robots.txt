@@ -1,1 +1,1 @@
-Sitemap: https://visionary-haupia-d3b4dc.netlify.app/sitemap.xml
+Sitemap: https://pset.aweatherman.com/sitemap.xml
