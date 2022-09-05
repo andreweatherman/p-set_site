@@ -1,0 +1,4 @@
+- source: project
+  netlify:
+    - id: 249bd6ff-20f0-40e7-b271-875a49d566f7
+      url: 'https://visionary-haupia-d3b4dc.netlify.app'
