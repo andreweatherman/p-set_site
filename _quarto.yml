@@ -11,10 +11,10 @@ website:
       - text: "SOC 223"
         menu:
           - 'soc-223-solutions/W1-SOC.qmd'
-      - text: "SOC 367S"
+          - 'soc-223-solutions/W2-SOC.qmd'
+      - text: 'SOC 367S'
         menu:
-          - 'Hold'
-
+          - 'soc-367-solutions/W1.qmd'
 format:
   html:
     theme: custom.scss

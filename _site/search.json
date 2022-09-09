@@ -18,7 +18,7 @@
     "href": "index.html#soc-223",
     "title": "Solutions",
     "section": "SOC 223:",
-    "text": "SOC 223:\n\nWeek 1\n\nFocuses on the basics of reading in and understanding data in R. Uses nrow, ncol, and class. Practices with causact::baseballData."
+    "text": "SOC 223:\n\nWeek 1\n\nFocuses on the basics of reading in and understanding data in R. Uses nrow, ncol, and class. Practices with causact::baseballData.\n\n\n\nWeek 2\n\nFocuses on the basics of plotting data with ggplot2 and reading statistical distributions from plots. Practices with Olympic data supplied by the course instructor."
   },
   {
     "objectID": "soc-223-solutions/W1-SOC.html",
@@ -61,5 +61,117 @@
     "title": "Week 1: SOC 223",
     "section": "Question 6:",
     "text": "Question 6:\n\nname <-\n  c(\n    \"Wayne Gretzky\",\n    \"Gordie Howe\",\n    \"Jaromir Jagr\",\n    \"Brett Hull\",\n    \"Marcel Dionne\",\n    \"Phil Esposito\" ,\n    \"Mike Gartner\",\n    \"Alex Ovechkin\",\n    \"Mark Messier\" ,\n    \"Steve Yzerman\"\n  )\ngoals <- c(894, 801, 766, 741, 731, 717, 708, 700, 694, 692)\nyear_started <- c(1979, 1946, 1990, 1986, 1971, 1963, 1979, 2005, 1979, 1983)\n\n\ndata <- dplyr::tibble(\n  name = name,\n  goals = goals,\n  year_started = year_started\n)\ndplyr::glimpse(data)\n\nRows: 10\nColumns: 3\n$ name         <chr> \"Wayne Gretzky\", \"Gordie Howe\", \"Jaromir Jagr\", \"Brett Hu…\n$ goals        <dbl> 894, 801, 766, 741, 731, 717, 708, 700, 694, 692\n$ year_started <dbl> 1979, 1946, 1990, 1986, 1971, 1963, 1979, 2005, 1979, 1983"
+  },
+  {
+    "objectID": "soc-223-solutions/W2-SOC.html",
+    "href": "soc-223-solutions/W2-SOC.html",
+    "title": "Week 2: SOC 223",
+    "section": "",
+    "text": "Load the data:\n\nolympics <- readr::read_csv(\"https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-07-27/olympics.csv\")\ndplyr::glimpse(olympics)\n\nRows: 271,116\nColumns: 15\n$ id     <dbl> 1, 2, 3, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, …\n$ name   <chr> \"A Dijiang\", \"A Lamusi\", \"Gunnar Nielsen Aaby\", \"Edgar Lindenau…\n$ sex    <chr> \"M\", \"M\", \"M\", \"M\", \"F\", \"F\", \"F\", \"F\", \"F\", \"F\", \"M\", \"M\", \"M\"…\n$ age    <dbl> 24, 23, 24, 34, 21, 21, 25, 25, 27, 27, 31, 31, 31, 31, 33, 33,…\n$ height <dbl> 180, 170, NA, NA, 185, 185, 185, 185, 185, 185, 188, 188, 188, …\n$ weight <dbl> 80, 60, NA, NA, 82, 82, 82, 82, 82, 82, 75, 75, 75, 75, 75, 75,…\n$ team   <chr> \"China\", \"China\", \"Denmark\", \"Denmark/Sweden\", \"Netherlands\", \"…\n$ noc    <chr> \"CHN\", \"CHN\", \"DEN\", \"DEN\", \"NED\", \"NED\", \"NED\", \"NED\", \"NED\", …\n$ games  <chr> \"1992 Summer\", \"2012 Summer\", \"1920 Summer\", \"1900 Summer\", \"19…\n$ year   <dbl> 1992, 2012, 1920, 1900, 1988, 1988, 1992, 1992, 1994, 1994, 199…\n$ season <chr> \"Summer\", \"Summer\", \"Summer\", \"Summer\", \"Winter\", \"Winter\", \"Wi…\n$ city   <chr> \"Barcelona\", \"London\", \"Antwerpen\", \"Paris\", \"Calgary\", \"Calgar…\n$ sport  <chr> \"Basketball\", \"Judo\", \"Football\", \"Tug-Of-War\", \"Speed Skating\"…\n$ event  <chr> \"Basketball Men's Basketball\", \"Judo Men's Extra-Lightweight\", …\n$ medal  <chr> NA, NA, NA, \"Gold\", NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…\n\n\nDefine global color variable for plotting:\n\ntheme_color <- '#087E8B'\noff_black <- '#272932'"
+  },
+  {
+    "objectID": "soc-223-solutions/W2-SOC.html#question-1",
+    "href": "soc-223-solutions/W2-SOC.html#question-1",
+    "title": "Week 2: SOC 223",
+    "section": "Question 1:",
+    "text": "Question 1:\n\ngold_medals <- olympics |> dplyr::filter(medal == \"Gold\")"
+  },
+  {
+    "objectID": "soc-223-solutions/W2-SOC.html#question-2",
+    "href": "soc-223-solutions/W2-SOC.html#question-2",
+    "title": "Week 2: SOC 223",
+    "section": "Question 2:",
+    "text": "Question 2:\nA common solution to high-density, messy graphs in ggplot2 is to adjust the alpha level. Another, and one that I explore below in tandem with the former, is to clarify your research question. Tracking the age of all Olympic gold medalists with a single plot might be too audacious an ask – not to mention it opens the door for a myriad of confounding variables. Instead, focusing on a subset of events, countries, or years might reveal a more useful trend.\n\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(ggbeeswarm)\nlibrary(pilot)\n\ngold_medals |>\n  filter(between(year, 1952, 2016) & season == \"Summer\") |>\n  group_by(year) |>\n  mutate(avg = mean(age, na.rm = TRUE)) |>\n  ggplot() +\n  geom_quasirandom(aes(year, age), alpha = 0.08, color = theme_color) +\n  geom_line(aes(year, avg), size = 1.2) +\n  scale_x_continuous(breaks = seq(1950, 2020, 10)) +\n  theme_pilot() +\n  labs(\n    title = \"Olympic gold medalists aren't getting younger\",\n    subtitle = \"Average age of summer gold medalists from 1952-2016\",\n    x = \"Olympic Games Year\",\n    y = \"Age of Medalist\",\n    caption = \"Visualization by @andreweatherman\"\n  )"
+  },
+  {
+    "objectID": "soc-223-solutions/W2-SOC.html#question-3",
+    "href": "soc-223-solutions/W2-SOC.html#question-3",
+    "title": "Week 2: SOC 223",
+    "section": "Question 3:",
+    "text": "Question 3:\n\nus_medals <- gold_medals |>\n  filter(noc == \"USA\") |>\n  group_by(year) |>\n  summarise(num_medals = n())\n\nThe United States’ most successful year:\n\nus_medals |>\n  dplyr::slice_max(num_medals)\n\n# A tibble: 1 × 2\n   year num_medals\n  <dbl>      <int>\n1  1984        190\n\n\nThe variance in gold medals won appears to grow towards the end of the data because the United States became more successful in summer events and less so in winter ones.*\n\n* This assumes that the number of summer and winter events remain relatively constant throughout the data. I am not sure if this is true."
+  },
+  {
+    "objectID": "soc-223-solutions/W2-SOC.html#question-4",
+    "href": "soc-223-solutions/W2-SOC.html#question-4",
+    "title": "Week 2: SOC 223",
+    "section": "Question 4:",
+    "text": "Question 4:\n\nevents <- c(\n  \"Gymnastics Men's Individual All-Around\",\n  \"Gymnastics Women's Individual All-Around\"\n)\n\ngymnastics <- gold_medals |>\n  dplyr::filter(event %in% events)\n\nHistogram:\n\nlibrary(ggplot2)\nlibrary(pilot)\n\ngymnastics |>\n  ggplot(aes(age)) +\n  geom_histogram(binwidth = 2, fill = theme_color, color = off_black, alpha = 0.5) +\n  geom_density(aes(y = 2 * ..count..), size = 1.2, color = off_black) +\n  geom_vline(aes(xintercept = mean(age)), linetype = \"dashed\", size = 1.2, color = off_black) +\n  theme_pilot() +\n  labs(y = \"count\")\n\n\n\n\nThis distribution is roughly symmetric and bimodal with a center at ~24 years old and no visible outliers. For questions like these on a homework, I generally leave out titles as the shape is all that we are interested in and the plot is merely a vehicle to that answer. If you want titles, I can start to add those in.\n\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(ggdensity)\nlibrary(pilot)\n\ngymnastics |>\n  # theme_pilot() fails with labeller in facet_wrap, idk why\n  mutate(title = case_when(\n    sex == \"F\" ~ \"Women\",\n    TRUE ~ \"Men\"\n  )) |>\n  ggplot(aes(age, fill = sex)) +\n  geom_histogram(binwidth = 2, color = off_black) +\n  scale_fill_manual(values = c(\"#9E90A2\", \"#4D7EA8\")) +\n  facet_wrap(~title) +\n  theme_pilot() +\n  theme(legend.position = \"none\",\n        strip.text = element_text(size=10)) +\n  labs(\n    title = \"The age gap in elite gymnastics\",\n    subtitle = \"Ages of Olympic gold-winning all-around gymnasts\",\n    x = \"Age\",\n    y = \"Medalists\"\n  )\n\n\n\n\nFemale gold-winning all-around gymnasts are more likely to be younger than their male counterparts."
+  },
+  {
+    "objectID": "soc-223-solutions/W2-SOC.html#question-5",
+    "href": "soc-223-solutions/W2-SOC.html#question-5",
+    "title": "Week 2: SOC 223",
+    "section": "Question 5:",
+    "text": "Question 5:\nBox plots are boring:\n\nevents <- c(\n  \"Gymnastics Men's Individual All-Around\",\n  \"Gymnastics Women's Individual All-Around\",\n  \"Athletics Women's 100 metres\",\n  \"Athletics Men's 100 metres\"\n)\n\ntwo_events <- gold_medals |>\n  dplyr::filter(event %in% events)\n\n\nlibrary(ggplot2)\nlibrary(ggdist)\nlibrary(paletteer)\nlibrary(pilot)\n\nx_names <- c('Men 100M', 'Wom. 100M', 'Men All-Around', 'Wom. All-Around')\ny_names <- c(seq(150, 180, 10), '190 cm.')\n\ntwo_events |>\n  ggplot(aes(event, height, fill=event)) +\n  stat_gradientinterval(.width = 1, point_size = 2, adjust = .2, alpha=0.7) +\n  scale_x_discrete(labels = x_names) +\n  scale_y_continuous(labels = y_names, breaks=seq(150, 190, 10)) +\n  scale_fill_paletteer_d(`\"nationalparkcolors::Badlands\"`) +\n  theme_pilot() +\n  theme(legend.position='none',\n        panel.grid.major.x = element_blank()) +\n  labs(x = '',\n       y='',\n       title = \"Most elite gymnasts are oddly the same height\",\n       subtitle = 'Height distributions of gold-winning athletes in select Summer Olympic events \\nback to 1896')"
+  },
+  {
+    "objectID": "soc-367-solutions/W1.html",
+    "href": "soc-367-solutions/W1.html",
+    "title": "Week 1: SOC 367S",
+    "section": "",
+    "text": "Load the data:\n\nload(url('https://dssoc.github.io/datasets/congress.RData'))\nload(url('https://dssoc.github.io/datasets/committees.RData'))"
+  },
+  {
+    "objectID": "soc-367-solutions/W1.html#question-1",
+    "href": "soc-367-solutions/W1.html#question-1",
+    "title": "Week 1: SOC 367S",
+    "section": "Question 1:",
+    "text": "Question 1:\nThe mean function returns the average of the passed object. There are three named arguments: x, an object, is the R object to be evaluated against; to calculate a symmetrically-trimmed mean, a value [0, 0.5] is passed to trim, a double, which cuts off that percent of observations from both ends; na.rm, a logical, determines whether NA values are removed from the data before the mean calculation."
+  },
+  {
+    "objectID": "soc-367-solutions/W1.html#question-2",
+    "href": "soc-367-solutions/W1.html#question-2",
+    "title": "Week 1: SOC 367S",
+    "section": "Question 2:",
+    "text": "Question 2:\n\nmy_vector <- c(\"R\",\"is\",\"great\")\nmy_vector[3]\n\n[1] \"great\""
+  },
+  {
+    "objectID": "soc-367-solutions/W1.html#question-3",
+    "href": "soc-367-solutions/W1.html#question-3",
+    "title": "Week 1: SOC 367S",
+    "section": "Question 3:",
+    "text": "Question 3:\n\nsome_vector <- c(\n  25555, 342343, 123123123, 4234234, 53243234, 54324234, 5421111, 12312312, 111231,\n  1231231, 12312312, 12312312, 123123, 898972, 789872, 2343, 23423423, 2343221, 23423, 14444, 44324222, 2342341, 124231111, 22233345, 1111233333, 1231231, 1231231\n)\n\n\nPart A:\n\nclass(some_vector)\n\n[1] \"numeric\"\n\n\n\n\nPart B:\n\nmax(some_vector)\n\n[1] 1111233333\n\n\n\n\nPart C:\n\nmean(some_vector)\n\n[1] 59756995\n\n\n\n\nPart D:\n\n54324222 %in% some_vector\n\n[1] FALSE"
+  },
+  {
+    "objectID": "soc-367-solutions/W1.html#question-4",
+    "href": "soc-367-solutions/W1.html#question-4",
+    "title": "Week 1: SOC 367S",
+    "section": "Question 4:",
+    "text": "Question 4:\n\nstr(congress)\n\n'data.frame':   539 obs. of  8 variables:\n $ bioguide_id: chr  \"B000944\" \"C000127\" \"C000141\" \"C000174\" ...\n $ full_name  : chr  \"Sherrod Brown\" \"Maria Cantwell\" \"Benjamin L. Cardin\" \"Thomas R. Carper\" ...\n $ type       : Factor w/ 2 levels \"rep\",\"sen\": 2 2 2 2 2 2 2 2 2 2 ...\n $ party      : Factor w/ 3 levels \"Democrat\",\"Independent\",..: 1 1 1 1 1 1 1 1 2 1 ...\n $ state      : chr  \"OH\" \"WA\" \"MD\" \"DE\" ...\n $ birthdate  : Date, format: \"1952-11-09\" \"1958-10-13\" ...\n $ gender     : Factor w/ 2 levels \"F\",\"M\": 2 1 2 2 2 1 1 2 2 1 ...\n $ birthyear  : num  1952 1958 1943 1947 1960 ...\n\n\nThe congress object has 539 rows with eight columns and is a data.frame."
+  },
+  {
+    "objectID": "soc-367-solutions/W1.html#question-5",
+    "href": "soc-367-solutions/W1.html#question-5",
+    "title": "Week 1: SOC 367S",
+    "section": "Question 5:",
+    "text": "Question 5:\nWe can use lubridate to calculate the precise ages of Sherrod Brown and Dianne Feinstein. The period class occasionally causes issues down stream, but for this one-off example, it is fine to use.\n\ncongress |>\n  dplyr::filter(\n    full_name %in% c(\n      \"Sherrod Brown\",\n      \"Dianne Feinstein\"\n    )\n  ) |>\n  dplyr::mutate(age = lubridate::as.period(\n    lubridate::interval(\n      birthdate,\n      Sys.Date()\n    )\n  )) |>\n  dplyr::select(full_name, age)\n\n         full_name                 age\n1    Sherrod Brown 69y 9m 30d 0H 0M 0S\n2 Dianne Feinstein 89y 2m 17d 0H 0M 0S"
+  },
+  {
+    "objectID": "soc-367-solutions/W1.html#question-6",
+    "href": "soc-367-solutions/W1.html#question-6",
+    "title": "Week 1: SOC 367S",
+    "section": "Question 6:",
+    "text": "Question 6:\nFor simplicity, I rounded the age to the nearest integer.\n\ncongress |>\n  dplyr::summarize(avg_birthyear = round(mean(birthyear), 0))\n\n  avg_birthyear\n1          1961"
+  },
+  {
+    "objectID": "soc-367-solutions/W1.html#question-7",
+    "href": "soc-367-solutions/W1.html#question-7",
+    "title": "Week 1: SOC 367S",
+    "section": "Question 7:",
+    "text": "Question 7:\nWhile I spend (probably) too much time in R, most of my work is focused in the sports sphere. I have experience with most of what the class covers – including the tidyverse, visualization (with ggplot2 and gt/reactable), web scraping (with rvest and RSelenium), working with and building APIs, writing and deploying packages to CRAN (toRvik), and some other stuff.\nI am taking this course for a chance to apply my skills to a different, yet equally exciting, domain. Without this class, I would probably continue to focus on sports analytics, and while that is really fun, working with different data in different scopes exposes me to new lines of thinking and fresh skills."
+  },
+  {
+    "objectID": "index.html#soc-367s",
+    "href": "index.html#soc-367s",
+    "title": "Solutions",
+    "section": "SOC 367S:",
+    "text": "SOC 367S:\n\nWeek 1\n\nFocuses on the basics of reading in and understanding data in R. Uses mean, max, and class. Practices with congress data supplied by the course instructor."
+  },
+  {
+    "objectID": "soc-223-solutions/W2-SOC.html#question-6",
+    "href": "soc-223-solutions/W2-SOC.html#question-6",
+    "title": "Week 2: SOC 223",
+    "section": "Question 6:",
+    "text": "Question 6:\n\nlibrary(dplyr)\n\nus_medalists <- gold_medals |> \n  # keep only summer games\n  filter(noc == \"USA\" & season == 'Summer') |>\n  mutate(decade = paste0(year - year %% 10, 's')) |> \n  filter(decade >= 1960) |> \n  group_by(year, decade, sex) |> \n  summarize(medals = n())\n\n\nlibrary(ggplot2)\nlibrary(pilot)\nlibrary(ggtext)\n\nus_medalists |> \n  ggplot(aes(medals, as.factor(year), fill=sex)) +\n  geom_bar(position='dodge', stat='identity', size=0.4, color='black') +\n  scale_fill_manual(values = c(\"#9E90A2\", \"#4D7EA8\")) +\n  facet_wrap(~decade, scales = 'free_y') +\n  theme_pilot() +\n  theme(legend.position = 'none',\n        axis.text = element_text(size = 8),\n        plot.title = element_markdown(size=14)) + \n  labs(y='',\n       x = '',\n       title = \"<span style = 'color: #9E90A2; font-weight: bold;'>Female olympians</span> are closing the American medal gap\",\n       subtitle = 'Gold medals won by American Olympians in Summer games since 1960')"
   }
 ]

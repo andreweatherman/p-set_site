@@ -1,0 +1,107 @@
+---
+title: "Week 1: SOC 367S"
+author: "Andrew Weatherman"
+date: 'September 8, 2022'
+format: 
+  html:
+    code-tools: true
+    highlight-style: github
+editor: visual
+---
+
+### Preparation:
+
+**Load the data:**
+
+```{r, message=FALSE}
+load(url('https://dssoc.github.io/datasets/congress.RData'))
+load(url('https://dssoc.github.io/datasets/committees.RData'))
+```
+
+## Question 1:
+
+The `mean` function returns the average of the passed object. There are three named arguments: `x`, an object, is the R object to be evaluated against; to calculate a symmetrically-trimmed mean, a value \[0, 0.5\] is passed to `trim`, a double, which cuts off that percent of observations from both ends; `na.rm`, a logical, determines whether `NA` values are removed from the data before the mean calculation.
+
+## Question 2:
+
+```{r}
+my_vector <- c("R","is","great")
+my_vector[3]
+```
+
+## Question 3:
+
+```{r}
+some_vector <- c(
+  25555, 342343, 123123123, 4234234, 53243234, 54324234, 5421111, 12312312, 111231,
+  1231231, 12312312, 12312312, 123123, 898972, 789872, 2343, 23423423, 2343221, 23423, 14444, 44324222, 2342341, 124231111, 22233345, 1111233333, 1231231, 1231231
+)
+```
+
+#### Part A:
+
+```{r}
+class(some_vector)
+```
+
+#### Part B:
+
+```{r}
+max(some_vector)
+```
+
+#### Part C:
+
+```{r}
+mean(some_vector)
+```
+
+#### Part D:
+
+```{r}
+54324222 %in% some_vector
+```
+
+## Question 4: 
+
+```{r}
+str(congress)
+```
+
+The `congress` object has 539 rows with eight columns and is a `data.frame`.
+
+## Question 5:
+
+We can use `lubridate` to calculate the precise ages of Sherrod Brown and Dianne Feinstein. The `period` class occasionally causes issues down stream, but for this one-off example, it is fine to use.
+
+```{r}
+congress |>
+  dplyr::filter(
+    full_name %in% c(
+      "Sherrod Brown",
+      "Dianne Feinstein"
+    )
+  ) |>
+  dplyr::mutate(age = lubridate::as.period(
+    lubridate::interval(
+      birthdate,
+      Sys.Date()
+    )
+  )) |>
+  dplyr::select(full_name, age)
+```
+
+## Question 6:
+
+For simplicity, I rounded the age to the nearest integer.
+
+```{r}
+congress |>
+  dplyr::summarize(avg_birthyear = round(mean(birthyear), 0))
+```
+
+## Question 7:
+
+While I spend (probably) too much time in R, most of my work is focused in the sports sphere. I have experience with most of what the class covers -- including the `tidyverse`, visualization (with `ggplot2` and `gt/reactable)`, web scraping (with `rvest` and `RSelenium`), working with and building APIs, writing and deploying packages to CRAN [(toRvik)](www.torvik.dev/ "Check out toRvik!"){.code}, and some other stuff.
+
+I am taking this course for a chance to apply my skills to a different, yet equally exciting, domain. Without this class, I would probably continue to focus on sports analytics, and while that is really fun, working with different data in different scopes exposes me to new lines of thinking and fresh skills.

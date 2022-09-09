@@ -9,3 +9,13 @@ This site hosts a repository of solutions for two Duke sociology classes focusin
 ### [Week 1](soc-223-solutions/W1-SOC.qmd)
 
 -   Focuses on the basics of reading in and understanding data in R. Uses `nrow`, `ncol`, and `class`. Practices with `causact::baseballData`.
+
+### [Week 2](soc-223-solutions/W2-SOC.qmd)
+
+-   Focuses on the basics of plotting data with `ggplot2` and reading statistical distributions from plots. Practices with Olympic data supplied by the course instructor.
+
+## SOC 367S:
+
+### [Week 1](soc-367-solutions/W1.qmd)
+
+-   Focuses on the basics of reading in and understanding data in R. Uses `mean`, `max`, and `class`. Practices with congress data supplied by the course instructor.
