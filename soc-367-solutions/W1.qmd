@@ -2,12 +2,17 @@
 title: "Week 1: SOC 367S"
 author: "Andrew Weatherman"
 date: 'September 8, 2022'
+resources: 
+  - "problems/week_1.html"
 format: 
   html:
+    self-contained: true
     code-tools: true
     highlight-style: github
 editor: visual
 ---
+
+### [Assignment Questions](problems/week_1.Rmd)
 
 ### Preparation:
 
@@ -20,7 +25,7 @@ load(url('https://dssoc.github.io/datasets/committees.RData'))
 
 ## Question 1:
 
-The `mean` function returns the average of the passed object. There are three named arguments: `x`, an object, is the R object to be evaluated against; to calculate a symmetrically-trimmed mean, a value \[0, 0.5\] is passed to `trim`, a double, which cuts off that percent of observations from both ends; `na.rm`, a logical, determines whether `NA` values are removed from the data before the mean calculation.
+The `mean` function returns the average of the passed object. There are three named arguments: `x`, an object, is the R object to be evaluated against; to calculate a symmetrically-trimmed mean, a value \[0, 0.5\] is passed to `trim`, a double, which cuts off that percent of observations from both ends; `na.rm`, a logical, determines whether `NA` values are to be removed before the calculation.
 
 ## Question 2:
 
@@ -62,7 +67,7 @@ mean(some_vector)
 54324222 %in% some_vector
 ```
 
-## Question 4: 
+## Question 4:
 
 ```{r}
 str(congress)
@@ -102,6 +107,6 @@ congress |>
 
 ## Question 7:
 
-While I spend (probably) too much time in R, most of my work is focused in the sports sphere. I have experience with most of what the class covers -- including the `tidyverse`, visualization (with `ggplot2` and `gt/reactable)`, web scraping (with `rvest` and `RSelenium`), working with and building APIs, writing and deploying packages to CRAN [(toRvik)](www.torvik.dev/ "Check out toRvik!"){.code}, and some other stuff.
+While I spend (probably) too much time in R, most of my work is focused in the sports sphere. I have experience with most of what the class covers -- including the `tidyverse`, visualization (with `ggplot2` and `gt/reactable`), web scraping (with `rvest` and `RSelenium`), working with and building APIs, writing and deploying packages to CRAN ([toRvik](www.torvik.dev/)), and some other stuff.
 
-I am taking this course for a chance to apply my skills to a different, yet equally exciting, domain. Without this class, I would probably continue to focus on sports analytics, and while that is really fun, working with different data in different scopes exposes me to new lines of thinking and fresh skills.
+I am taking this course for a chance to apply my skills to a different, yet equally exciting, domain. Without the class, I would probably continue to focus on sports analytics, and while that is really fun, working with different data in different scopes often leads to new ways of thinking and approaching problems.

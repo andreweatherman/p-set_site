@@ -4,6 +4,8 @@ project:
 website:
   title: "P-Set Solutions"
   favicon: favicon.png
+  twitter-card:
+    creator: '@andreweatherman'
   navbar:
     left:
       - href: index.qmd
@@ -15,6 +17,12 @@ website:
       - text: 'SOC 367S'
         menu:
           - 'soc-367-solutions/W1.qmd'
+      - text: 'CS 201'
+        menu:
+          - 'Coming soon'
+      - text: 'CS 216'
+        menu:
+          - 'Coming soon'
 format:
   html:
     theme: custom.scss

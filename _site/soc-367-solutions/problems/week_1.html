@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.38">
+<meta name="generator" content="quarto-1.0.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Andrew Weatherman">
+<meta name="author" content="SOC 367S">
 
-<title>SOC 223 Solutions - Week 1: SOC 223</title>
+<title>P-Set Solutions - Lab #1: R Basics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -82,22 +82,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -119,7 +120,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }</script>
 
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../../styles.css">
+<meta name="twitter:title" content="P-Set Solutions - Lab #1: R Basics">
+<meta name="twitter:description" content="Lab #1 Markdown File">
+<meta name="twitter:creator" content="@andreweatherman">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed">
@@ -128,8 +133,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">SOC 223 Solutions</span>
+      <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">P-Set Solutions</span>
   </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
@@ -137,21 +142,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html">Home</a>
+    <a class="nav-link" href="../../index.html">Home</a>
   </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-soc-223" role="button" data-bs-toggle="dropdown" aria-expanded="false">SOC 223</a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-soc-223">    
         <li>
-    <a class="dropdown-item" href="../solutions/W1-SOC.html">
+    <a class="dropdown-item" href="../../soc-223-solutions/W1-SOC.html">
  <span class="dropdown-text">Week 1: SOC 223</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../soc-223-solutions/W2-SOC.html">
+ <span class="dropdown-text">Week 2: SOC 223</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-soc-367s" role="button" data-bs-toggle="dropdown" aria-expanded="false">SOC 367S</a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-soc-367s">    
-        <li class="dropdown-header">Hold</li>
+        <li>
+    <a class="dropdown-item" href="../../soc-367-solutions/W1.html">
+ <span class="dropdown-text">Week 1: SOC 367S</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-cs-201" role="button" data-bs-toggle="dropdown" aria-expanded="false">CS 201</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-cs-201">    
+        <li class="dropdown-header">Coming soon</li>
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-cs-216" role="button" data-bs-toggle="dropdown" aria-expanded="false">CS 216</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-cs-216">    
+        <li class="dropdown-header">Coming soon</li>
     </ul>
   </li>
 </ul>
@@ -169,11 +193,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#question-1" id="toc-question-1" class="nav-link active" data-scroll-target="#question-1">Question 1:</a></li>
-  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2:</a></li>
-  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3:</a></li>
-  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4:</a></li>
-  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5:</a></li>
+  <li><a href="#questions" id="toc-questions" class="nav-link active" data-scroll-target="#questions">Questions</a></li>
   </ul>
 </nav>
     </div>
@@ -182,7 +202,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 1: SOC 223</h1>
+<h1 class="title">Lab #1: R Basics</h1>
 </div>
 
 
@@ -192,7 +212,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Andrew Weatherman </p>
+             <p>SOC 367S </p>
           </div>
   </div>
     
@@ -202,78 +222,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="question-1" class="level2">
-<h2 class="anchored" data-anchor-id="question-1">Question 1:</h2>
-<p>I already have those three packages installed on my machine.</p>
+<p><a href="../../assignments/Lab_1.Rmd"><strong>Lab #1 Markdown File</strong></a></p>
+<p><a href="https://dssoc.github.io/assignments/lab_instructions.html"><strong>Lab Instructions</strong></a></p>
+<p>In this lab we will be learning the basics of using R and working with real data.</p>
+<p>See the “Instructions” section of the <a href="https://dssoc.github.io/assignments/lab_instructions.html">Lab Instructions</a> page for more information about the labs. That page also gives descriptions for the datasets we will be using.</p>
+<p><strong>Required reading:</strong></p>
+<ul>
+<li><a href="https://r4ds.had.co.nz/workflow-basics.html">R for Data Science Chapter 4: Workflow basics</a></li>
+<li><a href="https://r4ds.had.co.nz/communicate-intro.html">R4DS Chapters 26-30: Communicating your analysis</a> (Except Chapter 28 - we will cover visualization later.)</li>
+</ul>
+<p><strong>Optional resources:</strong></p>
+<ul>
+<li><a href="%5Bdocumentation%20website%5D(https://www.rdocumentation.org/)">RDocumentation.org</a></li>
+</ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages('causact')</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages('dplyr')</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages('igraph')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
-</section>
-<section id="question-2" class="level2">
-<h2 class="anchored" data-anchor-id="question-2">Question 2:</h2>
-<p><code>n_distinct()</code> returns the number of distinct rows found in the object.</p>
-</section>
-<section id="question-3" class="level2">
-<h2 class="anchored" data-anchor-id="question-3">Question 3:</h2>
+<section id="questions" class="level2">
+<h2 class="anchored" data-anchor-id="questions">Questions</h2>
+<p><strong>1. Use the <a href="https://www.rdocumentation.org/">documentation website</a> or the helper functions in R (<code>?function_name</code>) to look up the <code>mean</code> function, and describe each of its arguments and what they do in your own words. Write your answer in the code block below as a comment.</strong></p>
+<p>NOTE: You can write comments in a code block by including a “#” character at the beginning of the line.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># number of rows</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(causact<span class="sc">::</span>baseballData)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 12145</code></pre>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your answer here.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># nummber of columns</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(causact<span class="sc">::</span>baseballData)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 5</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># type of `home` and `HomeScore` column</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(causact<span class="sc">::</span>baseballData[<span class="fu">c</span>(<span class="st">'Home'</span>, <span class="st">'HomeScore'</span>)], class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     Home HomeScore 
- "factor" "integer" </code></pre>
-</div>
-</div>
-</section>
-<section id="question-4" class="level2">
-<h2 class="anchored" data-anchor-id="question-4">Question 4:</h2>
-<p>One row in the data set represents a single game observation, while the <code>Home</code> and <code>Visitor</code> columns indicate who were the home and away teams during a game.</p>
-</section>
-<section id="question-5" class="level2">
-<h2 class="anchored" data-anchor-id="question-5">Question 5:</h2>
+<p><br></p>
+<p><strong>2. Extract the third element of the vector using numerical indexing.</strong></p>
+<p>NOTE: the first element index starts with 1 in R.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Wayne Gretzky"</span>,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Gordie Howe"</span>,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Jaromir Jagr"</span>,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Brett Hull"</span>,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Marcel Dionne"</span>,</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Phil Esposito"</span> ,</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Mike Gartner"</span>,</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Alex Ovechkin"</span>,</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Mark Messier"</span> ,</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Steve Yzerman"</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>goals <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">894</span>, <span class="dv">801</span>, <span class="dv">766</span>, <span class="dv">741</span>, <span class="dv">731</span>, <span class="dv">717</span>, <span class="dv">708</span>, <span class="dv">700</span>, <span class="dv">694</span>, <span class="dv">692</span>)</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>year_started <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1979</span>, <span class="dv">1946</span>, <span class="dv">1990</span>, <span class="dv">1986</span>, <span class="dv">1971</span>, <span class="dv">1963</span>, <span class="dv">1979</span>, <span class="dv">2005</span>, <span class="dv">1979</span>, <span class="dv">1983</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>my_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"R"</span>,<span class="st">"is"</span>,<span class="st">"great"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><br></p>
+<p><strong>3. This question has several parts: (a) Use R code to identify the data type of <code>some_vector</code>. (b) What is the largest number in this vector? (c) How about the mean value? (d) Does this vector include the number <code>54324222</code>? Your results should be generated from the R code - please do not write the numbers into R manually.</strong></p>
+<p>HINT: you’ll have to research some new functions in r to do this- try Google or one of the tutorials linked on the syllabus.</p>
+<p>HINT: check out the <code>%in%</code> operator.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">tibble</span>(</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> name,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">goals =</span> goals,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">year_started =</span> year_started</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 10
-Columns: 3
-$ name         &lt;chr&gt; "Wayne Gretzky", "Gordie Howe", "Jaromir Jagr", "Brett Hu…
-$ goals        &lt;dbl&gt; 894, 801, 766, 741, 731, 717, 708, 700, 694, 692
-$ year_started &lt;dbl&gt; 1979, 1946, 1990, 1986, 1971, 1963, 1979, 2005, 1979, 1983</code></pre>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>some_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25555</span>,<span class="dv">342343</span>,<span class="dv">123123123</span>,<span class="dv">4234234</span>,<span class="dv">53243234</span>,<span class="dv">54324234</span>,<span class="dv">5421111</span>,<span class="dv">12312312</span>,<span class="dv">111231</span>,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">1231231</span>,<span class="dv">12312312</span>,<span class="dv">12312312</span>,<span class="dv">123123</span>,<span class="dv">898972</span>,<span class="dv">789872</span>,<span class="dv">2343</span>,<span class="dv">23423423</span>,<span class="dv">2343221</span>,<span class="dv">23423</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">14444</span>,<span class="dv">44324222</span>,<span class="dv">2342341</span>,<span class="dv">124231111</span>,<span class="dv">22233345</span>,<span class="dv">1111233333</span>,<span class="dv">1231231</span>,<span class="dv">1231231</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><br></p>
+<p><strong>4. Use the <code>congress</code> dataframe for the remainder of questions in this assignment. (a) How many rows and columns does the <code>congress</code> dataframe have? (b) Use a function to show its data type. You must use R code to generate these values.</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><br></p>
+<p><strong>5. Using the browse features of R or RStudio, write the ages of Sherrod Brown (a member of congress) and Dianne Feinstein.</strong></p>
+<pre><code>Your written response here.
+Sherrod Brown: 
+Dianne Feinstein: </code></pre>
+<p><br></p>
+<p><strong>6. What is the average birthyear of congress members? What is the data type of the <code>birthyear</code> column?</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<p><strong>7. What are your learning goals for this semester? Not a trick question ;)</strong></p>
+<pre><code>your written response here</code></pre>
 
 
 </section>
